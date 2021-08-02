@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Loading_into_app"
+    android:background="#ebebeb">
+
+
+    <ImageView
+        android:layout_width="345dp"
+        android:layout_height="80dp"
+        android:src="@drawable/rectangle_reg"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"/>
+    <ImageView
+        android:layout_width="345dp"
+        android:layout_height="150dp"
+        android:src="@drawable/rectangle_reg"
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true"/>
+    <ImageView
+        android:layout_width="345dp"
+        android:layout_height="385dp"
+        android:src="@drawable/rectangle_reg"
+        android:layout_marginTop="330dp"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="#545454"
+        android:textColorHint="#dcdcdc"
+        android:hint="title"
+        android:textSize="25dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginLeft="45dp"
+        android:background="@null"/>
+    <EditText
+        android:id="@+id/desc"
+        android:layout_width="310dp"
+        android:layout_height="270dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="#545454"
+        android:gravity="top"
+        android:textColorHint="#dcdcdc"
+        android:hint="Description"
+        android:textSize="22dp"
+        android:layout_marginTop="352dp"
+        android:layout_marginLeft="45dp"
+        android:background="@null"/>
+    <TextView
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="#a3a3a3"
+        android:text="tags"
+        android:textSize="25dp"
+        android:layout_marginTop="165dp"
+        android:layout_marginLeft="45dp"/>
+    <TextView
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="#a3a3a3"
+        android:text="Secondary:"
+        android:textSize="22dp"
+        android:layout_marginTop="205dp"
+        android:layout_marginLeft="45dp"/>
+    <TextView
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="#a3a3a3"
+        android:text="Subject:"
+        android:textSize="22dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginLeft="45dp"/>
+    <Spinner
+        android:id="@+id/sec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="206dp"
+        android:layout_marginLeft="176dp"
+        android:entries="@array/sec"
+        />
+    <Spinner
+        android:id="@+id/sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:layout_marginLeft="142dp"
+        android:entries="@array/sub"
+        />
+    <Button
+        android:id="@+id/postnow"
+        android:layout_width="220dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="620dp"
+        android:textColor="#707070"
+        android:backgroundTint="#f5f5f5"
+        android:textSize="34dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:textStyle="bold"
+        android:text="Post"
+        android:textAllCaps="false"
+        app:cornerRadius="18dp"
+        android:letterSpacing="0.03"
+        android:stateListAnimator="@null"/>
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_arrow_back_24"
+        android:layout_margin="6dp"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
