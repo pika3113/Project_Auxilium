@@ -16,16 +16,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class changepasswordpop extends Activity {
 
     ImageView change;
-    EditText changetext;
     FirebaseAuth fAuth;
+    String mail;
+    DatabaseReference ref;
 
 
     @Override
@@ -40,49 +46,40 @@ public class changepasswordpop extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
         change = findViewById(R.id.changepass);
-        changetext = findViewById(R.id.changepasset);
         fAuth = FirebaseAuth.getInstance();
-
         getWindow().setLayout((int) (width*.8), (int) (height*.25));
+        String userid =  FirebaseAuth.getInstance().getCurrentUser().getUid();
+        readData(userid);
 
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mail = changetext.getText().toString();
-                if(TextUtils.isEmpty(mail)){
-                    Toast.makeText(changepasswordpop.this, "Email required.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(changepasswordpop.this, "Sent", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(changepasswordpop.this, acc_details.class);
-                        startActivity(intent);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(changepasswordpop.this, "Failed"+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
 
-
-
-
-
-
-
-
-
-
-
-
-
+                Intent intent = new Intent(changepasswordpop.this, acc_details.class);
+                startActivity(intent);
             }
 
         });
 
     }
-}
+
+    private void readData(String userid) {
+        ref = FirebaseDatabase.getInstance().getReference("users");
+        ref.child(userid).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()){
+
+                    if (task.getResult().exists()){
+                        DataSnapshot dataSnapshot = task.getResult();
+                        mail = String.valueOf(dataSnapshot.child("email").getValue());
+                        fAuth.sendPasswordResetEmail(mail);
+                    }
+                }
+            }
+        });
+
+    }
+    }
+
