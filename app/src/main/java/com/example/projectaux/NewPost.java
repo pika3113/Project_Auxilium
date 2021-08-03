@@ -37,7 +37,7 @@ public class NewPost extends AppCompatActivity {
     Button postnow;
     FirebaseDatabase rootnode;
     DatabaseReference ref , ref1, ref2;
-    String s1, sc1,title, desc;
+    String s1, sc1,title, desc, author;
     EditText title1, desc1;
     String buser, postno, postnu;
     double postno1, postno2;
@@ -56,7 +56,7 @@ public class NewPost extends AppCompatActivity {
         title1 = findViewById(R.id.title);
         desc1 = findViewById(R.id.desc);
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        postno = "3";
+        readData(userid);
 
 
 
@@ -81,18 +81,11 @@ public class NewPost extends AppCompatActivity {
                 readData(userid);
                 rootnode = FirebaseDatabase.getInstance();
                 ref = rootnode.getReference("posts");
-                postshelper postshelper = new postshelper(title,s1,sc1,desc,userid, buser);
+                postshelper postshelper = new postshelper(title,s1,sc1,desc,userid, author);
                 ref.child(title).setValue(postshelper);
                 startActivity(new Intent(getApplication(),Homepg.class));
                 ref1 = FirebaseDatabase.getInstance().getReference("users");
-                HashMap hashMap = new HashMap();
-                hashMap.put("post", postno);
-                ref1.child(userid).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
-                    @Override
-                    public void onSuccess(Object o) {
-                        Toast.makeText(NewPost.this, "success", Toast.LENGTH_SHORT).show();
-                    }
-                });
+
             }
         });
 
@@ -133,12 +126,7 @@ public class NewPost extends AppCompatActivity {
 
                     if (task.getResult().exists()){
                         DataSnapshot dataSnapshot = task.getResult();
-                        buser = String.valueOf(dataSnapshot.child("user").getValue());
-                        postnu = String.valueOf(dataSnapshot.child("post").getValue());
-                        postno1 = Double.parseDouble(postnu);
-                        postno2 = postno1 + 1;
-                        postno = "1";
-                                //Double.toString(postno2);
+                        author = String.valueOf(dataSnapshot.child("user").getValue());
 
 
 

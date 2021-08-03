@@ -4,10 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
     Context context;
 
     ArrayList<posts> list;
+
+
     
 
     public PostsAdapter(Context context, ArrayList<posts> list) {
@@ -45,19 +49,24 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
         holder.lang.setText(posts.getSec());
         holder.desc.setText(posts.getDesc());
         holder.author.setText(posts.getAuthor());
+
+        boolean isVisible = posts.visibility;
+        holder.constraintLayout.setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
 
     @Override
     public int getItemCount() {
 
         return list.size();
+
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView title, level, lang, desc, author;
 
         CardView posts1;
+        LinearLayout constraintLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +76,17 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
             lang = itemView.findViewById(R.id.lang);
             desc = itemView.findViewById(R.id.descposts);
             author = itemView.findViewById(R.id.author);
+            constraintLayout = itemView.findViewById(R.id.expandedlayout);
+
+            title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    posts posts = list.get(getAdapterPosition());
+                    posts.setVisibility(!posts.isVisibility());
+                    notifyItemChanged(getAdapterPosition());
+
+                }
+            });
 
 
 
