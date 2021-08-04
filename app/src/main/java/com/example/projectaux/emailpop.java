@@ -58,17 +58,19 @@ public class emailpop extends Activity {
                 HashMap hashMap = new HashMap();
                 hashMap.put("email", mail);
                 if (mail.contains(".com")){
+                    ref.child(userid).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                        @Override
+                        public void onSuccess(Object o) {
+                            Intent intent = new Intent(emailpop.this, acc_details.class);
+                            startActivity(intent);
+                            return;
+                        }
+                    });
+
+                } else {
                     email.setError("Invalid email");
                     return;
                 }
-                ref.child(userid).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
-                    @Override
-                    public void onSuccess(Object o) {
-                        Intent intent = new Intent(emailpop.this, acc_details.class);
-                        startActivity(intent);
-                    }
-                });
-
 
             }
         });

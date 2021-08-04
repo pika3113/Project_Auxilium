@@ -52,6 +52,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
 
         boolean isVisible = posts.visibility;
         holder.constraintLayout.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+
     }
 
     @Override
@@ -96,5 +97,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
     }
 
 
+
+
 }
+
+
 
