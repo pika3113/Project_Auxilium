@@ -115,6 +115,7 @@
                     android:background="@drawable/box"
                     android:layout_marginTop="115dp"/>
                 <EditText
+                    android:id="@+id/commentmade"
                     android:layout_width="260dp"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -123,7 +124,7 @@
                     android:text=""
                     android:background="@null"/>
                 <Button
-                    android:id="@+id/comment"
+                    android:id="@+id/commentbutton"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:layout_centerHorizontal="true"
@@ -138,6 +139,12 @@
                     app:cornerRadius="18dp"
                     android:letterSpacing="0.03"
                     android:stateListAnimator="@null"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentview"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="300dp"/>
 
 
             </RelativeLayout>

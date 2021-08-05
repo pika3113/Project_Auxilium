@@ -4,6 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder> {
 
@@ -62,11 +66,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
 
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+    public  class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView title, level, lang, desc, author;
-
-        CardView posts1;
+        EditText comment;
+        Button postcomment;
         LinearLayout constraintLayout;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -78,6 +83,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
             desc = itemView.findViewById(R.id.descposts);
             author = itemView.findViewById(R.id.author);
             constraintLayout = itemView.findViewById(R.id.expandedlayout);
+            comment = itemView.findViewById(R.id.commentmade);
+            postcomment = itemView.findViewById(R.id.commentbutton);
 
             title.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -92,6 +99,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
 
 
         }
+
+
 
 
     }

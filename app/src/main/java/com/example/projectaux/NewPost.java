@@ -80,9 +80,9 @@ public class NewPost extends AppCompatActivity {
                 }
                 readData(userid);
                 rootnode = FirebaseDatabase.getInstance();
-                ref = rootnode.getReference("posts");
+                ref = rootnode.getReference("comments");
                 postshelper postshelper = new postshelper(title,s1,sc1,desc,userid, author);
-                ref.child(title).setValue(postshelper);
+                ref.child("comments").setValue(postshelper);
                 startActivity(new Intent(getApplication(),Homepg.class));
                 ref1 = FirebaseDatabase.getInstance().getReference("users");
 
